@@ -40,8 +40,14 @@ public class Main {
             if (guess > number)
                 System.out.println("Your guess is too high");
 
-        }while (guess != number);
-        System.out.println(String.format("Good job, %s! You guessed my number in %s guesses!",
-                name, nGuesses));
+        }while (guess != number && nGuesses <= 6);
+        if(guess == number){
+            System.out.println(String.format(
+                    "Good job, %s! You guessed my number in %s guesses!",
+                    name, nGuesses));
+        } else {
+            System.out.println("You couldn't guess my number in 6 guesses. " +
+                    "Better luck next time!");
+        }
     }
 }
