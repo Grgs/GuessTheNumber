@@ -26,13 +26,14 @@ public class Main {
         System.out.println(String.format(intro, name));
         Random rnd = new Random();
         int number = rnd.nextInt(21);
-        int guess;
+        int guess = 0;
         int nGuesses = 0;
         do {
             try {
                 guess = Integer.parseInt(in.nextLine());
             } catch (NumberFormatException e){
-                guess = 99;
+                System.out.println("Invalid guess: try again");
+                continue;
             }
             nGuesses += 1;
             if (guess < number)
