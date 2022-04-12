@@ -27,7 +27,7 @@ public class Main {
         Random rnd = new Random();
         int number = rnd.nextInt(21);
         int guess = 0;
-        int nGuesses = 0;
+        int numberOfGuesses = 0;
         do {
             try {
                 guess = Integer.parseInt(in.nextLine());
@@ -35,17 +35,17 @@ public class Main {
                 System.out.println("Invalid guess: try again");
                 continue;
             }
-            nGuesses += 1;
+            numberOfGuesses++;
             if (guess < number)
                 System.out.println("Your guess is too low");
             if (guess > number)
                 System.out.println("Your guess is too high");
 
-        } while (guess != number && nGuesses <= 6);
+        } while (guess != number && numberOfGuesses <= 6);
         if (guess == number) {
             System.out.println(String.format(
                     "Good job, %s! You guessed my number in %s guesses!",
-                    name, nGuesses));
+                    name, numberOfGuesses));
         } else {
             System.out.println("You couldn't guess my number in 6 guesses. " +
                     "Better luck next time!");
