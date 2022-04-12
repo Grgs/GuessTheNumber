@@ -7,16 +7,16 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        // write your code here
         Scanner in = new Scanner(System.in);
         System.out.println("Hello! What's your name?");
         String name = in.nextLine();
         boolean anotherRound = false;
-        do{
+        do {
             playGame(in, name);
             System.out.println("Would you like to play again?");
             anotherRound = in.nextLine().toLowerCase(Locale.ROOT).startsWith("y");
-        } while(anotherRound);
+        } while (anotherRound);
 
     }
 
@@ -31,7 +31,7 @@ public class Main {
         do {
             try {
                 guess = Integer.parseInt(in.nextLine());
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid guess: try again");
                 continue;
             }
@@ -41,8 +41,8 @@ public class Main {
             if (guess > number)
                 System.out.println("Your guess is too high");
 
-        }while (guess != number && nGuesses <= 6);
-        if(guess == number){
+        } while (guess != number && nGuesses <= 6);
+        if (guess == number) {
             System.out.println(String.format(
                     "Good job, %s! You guessed my number in %s guesses!",
                     name, nGuesses));
