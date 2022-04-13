@@ -16,7 +16,7 @@ public class GuessState {
     public GuessState() {
         this.numberOfGuesses = 0;
         Random rnd = new Random();
-        this.actualNumber = rnd.nextInt(maxGuess + 1);
+        this.actualNumber = rnd.nextInt(maxGuess) + 1;
         state = State.GUESSING;
     }
 
