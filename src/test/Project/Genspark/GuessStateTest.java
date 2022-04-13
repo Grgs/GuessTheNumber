@@ -34,5 +34,14 @@ class GuessStateTest {
         } else if (guessState.getActualNumber() < 10) {
             assertEquals(Comparison.HIGH, comparison);
         }
+        GuessState guessState2 = new GuessState();
+        comparison = guessState2.checkGuess(guessState2.getMaxGuess() + 1);
+        assertEquals(Comparison.HIGH, comparison);
+        assertNotEquals(State.WON, guessState2.getState());
+
+        GuessState guessState3 = new GuessState();
+        comparison = guessState3.checkGuess(0);
+        assertEquals(Comparison.LOW, comparison);
+        assertNotEquals(State.WON, guessState2.getState());
     }
 }

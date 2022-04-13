@@ -1,7 +1,6 @@
 package Project.Genspark;
 
 import java.util.Locale;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
