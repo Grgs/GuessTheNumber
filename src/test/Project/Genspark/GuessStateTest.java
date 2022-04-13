@@ -21,10 +21,18 @@ class GuessStateTest {
 
     @Test
     void checkGuess() {
-        guessState.checkGuess(10);
-        if (guessState.getActualNumber() != 10)
+        Comparison comparison = guessState.checkGuess(10);
+        if (guessState.getActualNumber() != 10) {
             assertEquals(State.GUESSING, guessState.getState());
-        else
-            assertNotEquals(State.GUESSING, guessState.getState());
+            assertNotEquals(Comparison.EQUAL, comparison);
+        } else {
+            assertEquals(State.WON, guessState.getState());
+            assertNotEquals(Comparison.EQUAL, comparison);
+        }
+        if (guessState.getActualNumber() > 10) {
+            assertEquals(Comparison.LOW, comparison);
+        } else if (guessState.getActualNumber() < 10) {
+            assertEquals(Comparison.HIGH, comparison);
+        }
     }
 }
