@@ -20,35 +20,33 @@ public class Main {
 
     }
 
-    private static void playGame(Scanner in, String name) {
-        String intro = "Well, %s, I am thinking of a number between 1 and 20 %n" +
+    public static void playGame(Scanner in, String name) {
+        Comparison comparison;
+        GuessState guessState = new GuessState();
+        String intro = "Well, %s, I am thinking of a number between 1 and %d %n" +
                 "Take a guess.";
-        System.out.println(String.format(intro, name));
-        Random rnd = new Random();
-        int number = rnd.nextInt(21);
-        int guess = 0;
-        int numberOfGuesses = 0;
+        System.out.println(String.format(intro, name, guessState.getMaxGuess()));
         do {
             try {
-                guess = Integer.parseInt(in.nextLine());
+                comparison = guessState.checkGuess(Integer.parseInt(in.nextLine()));
             } catch (NumberFormatException e) {
                 System.out.println("Invalid guess: try again");
                 continue;
             }
-            numberOfGuesses++;
-            if (guess < number)
+            if (comparison == Comparison.LOW)
                 System.out.println("Your guess is too low");
-            if (guess > number)
+            if (comparison == Comparison.HIGH)
                 System.out.println("Your guess is too high");
 
-        } while (guess != number && numberOfGuesses <= 6);
-        if (guess == number) {
+        } while (guessState.getState() == State.GUESSING);
+
+        if (guessState.getState() == State.WON) {
             System.out.println(String.format(
                     "Good job, %s! You guessed my number in %s guesses!",
-                    name, numberOfGuesses));
+                    name, guessState.getNumberOfGuesses()));
         } else {
-            System.out.println("You couldn't guess my number in 6 guesses. " +
-                    "Better luck next time!");
+            System.out.println(String.format("You couldn't guess my number in %d guesses.%n" +
+                    "Better luck next time!%n", guessState.getNumberOfGuesses()));
         }
     }
 }
